@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultural AI — Quiz</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/quiz.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">🏛️ Cultural AI</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="learn.html">Learn</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+        </ul>
+    </nav>
+
+    <!-- QUIZ SCREEN -->
+    <section class="quiz-section" id="quiz-screen">
+        <div class="quiz-box">
+
+            <!-- Progress -->
+            <div class="quiz-progress">
+                <span id="question-counter">Question 1 of 5</span>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+            </div>
+
+            <!-- Score -->
+            <div class="score-display">Score: <span id="score">0</span></div>
+
+            <!-- Question -->
+            <h2 class="question-text" id="question-text">Loading question...</h2>
+
+            <!-- Options -->
+            <div class="options-grid" id="options-grid"></div>
+
+            <!-- Next Button -->
+            <button class="btn-primary" id="next-btn" disabled onclick="nextQuestion()">
+                Next Question →
+            </button>
+
+        </div>
+    </section>
+
+    <!-- RESULT SCREEN (hidden at start) -->
+    <section class="result-screen hidden" id="result-screen">
+        <div class="result-box">
+            <div class="result-emoji" id="result-emoji">🏆</div>
+            <h1 id="result-title">Amazing!</h1>
+            <p id="result-message">You really know your history!</p>
+            <div class="final-score">
+                <span id="final-score">0</span>
+                <span class="out-of">/ 5</span>
+            </div>
+            <div class="result-actions">
+                <button class="btn-primary" onclick="restartQuiz()">Try Again 🔄</button>
+                <a href="index.html" class="btn-secondary">Back Home</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>Built with ❤️ by DSAI Team | Dayananda Sagar College of Engineering</p>
+    </footer>
+
+    <script src="js/quiz.js"></script>
+</body>
+</html>
