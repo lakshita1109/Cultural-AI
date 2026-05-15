@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultural AI-Discover History Through Images</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">🏛️ Cultural AI</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="learn.html">Learn</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Discover History<br><span class="highlight">Through Your Camera</span></h1>
+            <p class="tagline">Upload a photo of any historical landmark and let AI tell you its story</p>
+            <a href="#upload-section" class="btn-primary">Try It Now →</a>
+        </div>
+    </section>
+
+    <!-- UPLOAD SECTION -->
+    <section class="upload-section" id="upload-section">
+        <h2>Upload Your Image</h2>
+        <p>Take a photo of a historical place and our AI will recognize it instantly</p>
+
+        <div class="upload-box" id="upload-box">
+            <input type="file" id="image-input" accept="image/*" hidden>
+            <div class="upload-placeholder" id="upload-placeholder">
+                <span class="upload-icon">📷</span>
+                <p>Click to upload or drag & drop</p>
+                <p class="upload-hint">Supports JPG, PNG, WEBP</p>
+            </div>
+            <img id="preview-image" src="" alt="Preview" hidden>
+        </div>
+
+        <button class="btn-primary" id="identify-btn" disabled>Identify Landmark</button>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how-it-works">
+        <h2>How It Works</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Upload Photo</h3>
+                <p>Take or upload a photo of any historical landmark</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>AI Identifies</h3>
+                <p>Our CNN model recognizes the landmark instantly</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Learn & Quiz</h3>
+                <p>Explore history, facts, and test your knowledge</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>Built Lakshita | Dayananda Sagar College of Engineering</p>
+    </footer>
+
+    <script src="js/upload.js"></script>
+</body>
+</html>
