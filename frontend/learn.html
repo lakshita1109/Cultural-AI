@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultural AI — Learn</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/learn.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">🏛️ Cultural AI</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="learn.html">Learn</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="learn-hero">
+        <div class="floating-emojis">
+            <span class="float-emoji" style="left:5%; animation-delay:0s">🏛️</span>
+            <span class="float-emoji" style="left:15%; animation-delay:0.5s">🗺️</span>
+            <span class="float-emoji" style="left:80%; animation-delay:1s">🔭</span>
+            <span class="float-emoji" style="left:90%; animation-delay:1.5s">📜</span>
+            <span class="float-emoji" style="left:50%; animation-delay:0.8s">⭐</span>
+        </div>
+        <div class="learn-hero-content">
+            <div class="hero-badge">✨ Explorer Mode</div>
+            <h1>Let's Travel Through <span class="highlight">Time!</span></h1>
+            <p class="learn-tagline">Every monument has a secret story. Are you ready to discover them?</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">15</span>
+                    <span class="stat-label">Landmarks</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number">100+</span>
+                    <span class="stat-label">Fun Facts</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">Quizzes</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DAILY QUOTE -->
+    <section class="quote-section">
+        <div class="quote-box">
+            <span class="quote-mark">"</span>
+            <p class="quote-text" id="quote-text">The world is a book, and those who do not travel read only one page.</p>
+            <p class="quote-author" id="quote-author">— Saint Augustine</p>
+            <button class="quote-refresh" onclick="newQuote()">New Quote ✨</button>
+        </div>
+    </section>
+
+    <!-- DID YOU KNOW TICKER -->
+    <div class="ticker-wrapper">
+        <div class="ticker-label">🔥 Did You Know?</div>
+        <div class="ticker-track">
+            <div class="ticker-content" id="ticker-content"></div>
+        </div>
+    </div>
+
+    <!-- LANDMARK CARDS -->
+    <section class="cards-section">
+        <h2 class="section-title">🗺️ Explore Landmarks</h2>
+        <p class="section-subtitle">Click any card to learn more!</p>
+
+        <div class="cards-grid" id="cards-grid"></div>
+    </section>
+
+    <!-- FUN CHALLENGE BANNER -->
+    <section class="challenge-banner">
+        <div class="challenge-inner">
+            <div class="challenge-left">
+                <span class="challenge-badge">🎯 Daily Challenge</span>
+                <h2>How many landmarks can you identify today?</h2>
+                <p>Upload photos and become a History Explorer!</p>
+            </div>
+            <a href="index.html" class="btn-primary btn-large">Start Exploring →</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>Built by lakshita DSAI Team | Dayananda Sagar College of Engineering</p>
+    </footer>
+
+    <script src="js/learn.js"></script>
+</body>
+</html>
