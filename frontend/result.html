@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultural AI — Result</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/result.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">🏛️ Cultural AI</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="learn.html">Learn</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+        </ul>
+    </nav>
+
+    <!-- RESULT HERO -->
+    <section class="result-hero">
+        <div class="result-hero-inner">
+            <div class="uploaded-image-box">
+                <img id="uploaded-img" src="" alt="Uploaded landmark">
+            </div>
+            <div class="result-identity">
+                <p class="result-label">AI Identified</p>
+                <h1 id="landmark-name">Taj Mahal</h1>
+                <div class="confidence-bar-wrapper">
+                    <span class="confidence-label">Confidence</span>
+                    <div class="confidence-bar">
+                        <div class="confidence-fill" id="confidence-fill"></div>
+                    </div>
+                    <span class="confidence-percent" id="confidence-percent">94%</span>
+                </div>
+                <div class="location-tag">
+                    📍 <span id="landmark-location">Agra, Uttar Pradesh, India</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INFO TABS -->
+    <section class="info-section">
+        <div class="tabs">
+            <button class="tab-btn active" onclick="showTab('history')">📜 History</button>
+            <button class="tab-btn" onclick="showTab('facts')">💡 Fun Facts</button>
+            <button class="tab-btn" onclick="showTab('culture')">🎭 Culture</button>
+        </div>
+
+        <div class="tab-content" id="history">
+            <h2>Historical Background</h2>
+            <p id="history-text">Loading...</p>
+        </div>
+
+        <div class="tab-content hidden" id="facts">
+            <h2>Fun Facts</h2>
+            <ul id="facts-list"></ul>
+        </div>
+
+        <div class="tab-content hidden" id="culture">
+            <h2>Cultural Importance</h2>
+            <p id="culture-text">Loading...</p>
+        </div>
+    </section>
+
+    <!-- QUIZ CTA -->
+    <section class="quiz-cta">
+        <h2>Think you know this place?</h2>
+        <p>Test your knowledge with a quick quiz!</p>
+        <a href="quiz.html" class="btn-primary">Take the Quiz 🎯</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>Built with ❤️ by DSAI Team | Dayananda Sagar College of Engineering</p>
+    </footer>
+
+    <script src="js/result.js"></script>
+</body>
+</html>

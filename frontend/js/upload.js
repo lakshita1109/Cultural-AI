@@ -37,7 +37,15 @@ imageInput.addEventListener('change', function() {
 
 // When user clicks Identify Landmark
 identifyBtn.addEventListener('click', function() {
-    // For now, just redirect to result page
-    // Later, we'll send the image to Flask backend here
-    alert('AI model not connected yet — we will do this in Phase 5!');
+    // Save the image to localStorage so result page can show it
+    const file = imageInput.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+        localStorage.setItem('uploadedImage', e.target.result);
+        // Go to result page
+        window.location.href = 'result.html';
+    };
+
+    reader.readAsDataURL(file);
 });
