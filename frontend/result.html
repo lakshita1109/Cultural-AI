@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cultural AI — Result</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/result.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/result.css">
 </head>
 <body>
 
@@ -45,9 +45,9 @@
     <!-- INFO TABS -->
     <section class="info-section">
         <div class="tabs">
-            <button class="tab-btn active" onclick="showTab('history')">📜 History</button>
-            <button class="tab-btn" onclick="showTab('facts')">💡 Fun Facts</button>
-            <button class="tab-btn" onclick="showTab('culture')">🎭 Culture</button>
+            <button class="tab-btn active" id="tab-history" onclick="window.showTab('history', this)">📜 History</button>
+            <button class="tab-btn" id="tab-facts" onclick="window.showTab('facts', this)">💡 Fun Facts</button>
+            <button class="tab-btn" id="tab-culture" onclick="window.showTab('culture', this)">🎭 Culture</button>
         </div>
 
         <div class="tab-content" id="history">
@@ -78,6 +78,6 @@
         <p>Built with ❤️ by DSAI Team | Dayananda Sagar College of Engineering</p>
     </footer>
 
-    <script src="js/result.js"></script>
+    <script src="/js/result.js"></script>
 </body>
 </html>

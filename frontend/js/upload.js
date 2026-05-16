@@ -1,51 +1,68 @@
-// Get references to HTML elements
 const uploadBox = document.getElementById('upload-box');
 const imageInput = document.getElementById('image-input');
 const previewImage = document.getElementById('preview-image');
 const uploadPlaceholder = document.getElementById('upload-placeholder');
 const identifyBtn = document.getElementById('identify-btn');
 
-// When user clicks the upload box, open file picker
+// Click upload box → open file picker
 uploadBox.addEventListener('click', function() {
     imageInput.click();
 });
 
-// When user selects a file
+// When user selects a file → show preview
 imageInput.addEventListener('change', function() {
     const file = imageInput.files[0];
-
-    // If no file selected, do nothing
     if (!file) return;
 
-    // FileReader reads the file and converts it to a URL we can display
     const reader = new FileReader();
-
     reader.onload = function(e) {
-        // Show the preview image
         previewImage.src = e.target.result;
         previewImage.hidden = false;
-
-        // Hide the placeholder text
         uploadPlaceholder.hidden = true;
-
-        // Enable the identify button
         identifyBtn.disabled = false;
     };
-
     reader.readAsDataURL(file);
 });
 
 // When user clicks Identify Landmark
-identifyBtn.addEventListener('click', function() {
-    // Save the image to localStorage so result page can show it
+identifyBtn.addEventListener('click', async function() {
+
     const file = imageInput.files[0];
-    const reader = new FileReader();
+    if (!file) return;
 
-    reader.onload = function(e) {
-        localStorage.setItem('uploadedImage', e.target.result);
-        // Go to result page
-        window.location.href = 'result.html';
-    };
+    // Change button text to show loading
+    identifyBtn.textContent = 'Identifying...';
+    identifyBtn.disabled = true;
 
-    reader.readAsDataURL(file);
+    // Create FormData to send image to Flask
+    const formData = new FormData();
+    formData.append('image', file);
+
+    try {
+        // Send image to Flask backend
+        const response = await fetch('http://127.0.0.1:5000/predict', {
+            method: 'POST',
+            body: formData
+        });
+
+        const data = await response.json();
+
+        // Save result to localStorage so result page can use it
+        localStorage.setItem('predictionResult', JSON.stringify(data));
+
+        // Also save image preview
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            localStorage.setItem('uploadedImage', e.target.result);
+            // Go to result page
+            window.location.href = 'result.html';
+        };
+        reader.readAsDataURL(file);
+
+    } catch (error) {
+        // If Flask is not running, show error
+        alert('Could not connect to server. Make sure Flask is running on port 5000.');
+        identifyBtn.textContent = 'Identify Landmark';
+        identifyBtn.disabled = false;
+    }
 });

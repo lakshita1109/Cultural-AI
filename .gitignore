@@ -1,1 +1,25 @@
- 
+ # Python
+__pycache__/
+*.pyc
+venv/
+*.h5
+*.pt
+
+# Data (too large for GitHub)
+data/
+
+# Database file
+database/landmarks.db
+
+# Uploads
+backend/uploads/
+
+# Model files
+model/saved_model/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
