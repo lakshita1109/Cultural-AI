@@ -1,57 +1,47 @@
-// ── QUIZ DATA (will come from Flask later) ──
-const quizData = [
-    {
-        question: "In which city is the Taj Mahal located?",
-        options: ["Delhi", "Agra", "Jaipur", "Lucknow"],
-        answer: "Agra"
-    },
-    {
-        question: "Which Mughal emperor built the Taj Mahal?",
-        options: ["Akbar", "Humayun", "Shah Jahan", "Aurangzeb"],
-        answer: "Shah Jahan"
-    },
-    {
-        question: "How many years did it take to build the Taj Mahal?",
-        options: ["10 years", "15 years", "22 years", "30 years"],
-        answer: "22 years"
-    },
-    {
-        question: "The Taj Mahal was built in memory of whom?",
-        options: ["Nur Jahan", "Mumtaz Mahal", "Razia Sultana", "Jodha Bai"],
-        answer: "Mumtaz Mahal"
-    },
-    {
-        question: "The Taj Mahal became a UNESCO World Heritage Site in which year?",
-        options: ["1972", "1978", "1983", "1990"],
-        answer: "1983"
-    }
-];
-
 // ── TRACKING VARIABLES ──
+let quizData = [];
 let currentQuestion = 0;
 let score = 0;
 let answered = false;
+
+// ── FETCH QUIZ FROM FLASK ──
+async function fetchQuiz() {
+    const landmark = localStorage.getItem('predictedLandmark') || 'taj_mahal';
+
+    try {
+        const response = await fetch(`/quiz/${landmark}`);
+        const data = await response.json();
+        quizData = data.questions;
+        loadQuestion();
+    } catch (error) {
+        console.error('Could not fetch quiz:', error);
+        // Fallback to default questions
+        quizData = [
+            {
+                question: 'Which of these is a UNESCO World Heritage Site?',
+                options: ['Taj Mahal', 'Eiffel Tower', 'Statue of Liberty', 'Big Ben'],
+                answer: 'Taj Mahal'
+            }
+        ];
+        loadQuestion();
+    }
+}
 
 // ── LOAD A QUESTION ──
 function loadQuestion() {
     const data = quizData[currentQuestion];
 
-    // Update question text
     document.getElementById('question-text').textContent = data.question;
 
-    // Update progress bar
     const progressPercent = ((currentQuestion + 1) / quizData.length) * 100;
     document.getElementById('progress-fill').style.width = progressPercent + '%';
 
-    // Update counter
     document.getElementById('question-counter').textContent =
         'Question ' + (currentQuestion + 1) + ' of ' + quizData.length;
 
-    // Clear previous options
     const grid = document.getElementById('options-grid');
     grid.innerHTML = '';
 
-    // Create option buttons
     data.options.forEach(function(option) {
         const btn = document.createElement('button');
         btn.classList.add('option-btn');
@@ -60,30 +50,24 @@ function loadQuestion() {
         grid.appendChild(btn);
     });
 
-    // Reset next button
     document.getElementById('next-btn').disabled = true;
     answered = false;
 }
 
 // ── CHECK ANSWER ──
 function checkAnswer(selected, clickedBtn) {
-    // Prevent answering twice
     if (answered) return;
     answered = true;
 
     const correct = quizData[currentQuestion].answer;
 
-    // Disable all buttons
     document.querySelectorAll('.option-btn').forEach(function(btn) {
         btn.disabled = true;
-
-        // Highlight correct answer green
         if (btn.textContent === correct) {
             btn.classList.add('correct');
         }
     });
 
-    // If wrong, highlight selected red
     if (selected !== correct) {
         clickedBtn.classList.add('wrong');
     } else {
@@ -91,14 +75,12 @@ function checkAnswer(selected, clickedBtn) {
         document.getElementById('score').textContent = score;
     }
 
-    // Enable next button
     document.getElementById('next-btn').disabled = false;
 }
 
 // ── NEXT QUESTION ──
 function nextQuestion() {
     currentQuestion++;
-
     if (currentQuestion < quizData.length) {
         loadQuestion();
     } else {
@@ -112,12 +94,11 @@ function showResult() {
     document.getElementById('result-screen').classList.remove('hidden');
     document.getElementById('final-score').textContent = score;
 
-    // Different message based on score
-    if (score === 5) {
+    if (score === quizData.length) {
         document.getElementById('result-emoji').textContent = '🏆';
         document.getElementById('result-title').textContent = 'Perfect Score!';
         document.getElementById('result-message').textContent = 'You are a history expert!';
-    } else if (score >= 3) {
+    } else if (score >= quizData.length / 2) {
         document.getElementById('result-emoji').textContent = '⭐';
         document.getElementById('result-title').textContent = 'Well Done!';
         document.getElementById('result-message').textContent = 'You know your history pretty well!';
@@ -139,5 +120,9 @@ function restartQuiz() {
     loadQuestion();
 }
 
-// Start the quiz on page load
-loadQuestion();
+// ── MAKE FUNCTIONS GLOBAL ──
+window.nextQuestion = nextQuestion;
+window.restartQuiz = restartQuiz;
+
+// ── START ──
+fetchQuiz();

@@ -11,9 +11,9 @@ import matplotlib.pyplot as plt
 # ── SETTINGS ──
 DATA_DIR = 'data'
 MODEL_DIR = 'model/saved_model'
-BATCH_SIZE = 8
-EPOCHS = 15
-LEARNING_RATE = 0.001
+BATCH_SIZE = 4
+EPOCHS = 20
+LEARNING_RATE = 0.005
 IMG_SIZE = 224
 
 os.makedirs(MODEL_DIR, exist_ok=True)

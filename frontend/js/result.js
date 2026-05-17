@@ -35,6 +35,8 @@ function loadResult() {
             li.textContent = fact;
             factsList.appendChild(li);
         });
+// Save predicted landmark for quiz page
+localStorage.setItem('predictedLandmark', data.landmark.toLowerCase().replace(/ /g, '_'));
     }
 
     // Show uploaded image
