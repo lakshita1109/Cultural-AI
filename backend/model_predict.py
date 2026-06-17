@@ -137,6 +137,7 @@ landmark_info = {
         ],
         'culture': 'The Ajanta Caves represent the height of ancient Indian artistic achievement.'
     },
+    
     'gateway_of_india': {
         'name': 'Gateway of India',
         'location': 'Mumbai, Maharashtra, India',
