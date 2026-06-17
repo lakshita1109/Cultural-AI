@@ -4,7 +4,8 @@
       "src": "backend/app.py",
       "use": "@vercel/python",
       "config": {
-        "installCommand": "pip install -r backend/requirements.txt"
+        "installCommand": "pip install -r backend/requirements.txt",
+        "buildCommand": "pip install -r backend/requirements.txt"
       }
     }
   ],
