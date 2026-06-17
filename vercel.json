@@ -1,9 +1,11 @@
 {
-  "version": 2,
   "builds": [
     {
       "src": "backend/app.py",
-      "use": "@vercel/python"
+      "use": "@vercel/python",
+      "config": {
+        "installCommand": "pip install -r backend/requirements.txt && pip install 'clip @ git+https://github.com/openai/CLIP.git'"
+      }
     }
   ],
   "routes": [
