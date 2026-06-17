@@ -4,7 +4,7 @@
       "src": "backend/app.py",
       "use": "@vercel/python",
       "config": {
-        "installCommand": "pip install -r backend/requirements.txt && pip install 'clip @ git+https://github.com/openai/CLIP.git'"
+        "installCommand": "pip install -r backend/requirements.txt"
       }
     }
   ],

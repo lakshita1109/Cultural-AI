@@ -1,3 +1,23 @@
+import subprocess
+import sys
+import os
+
+# ===== RUNTIME CLIP INSTALLATION =====
+# This runs when your app starts on Vercel
+try:
+    import clip
+    print("✅ CLIP already installed")
+except ImportError:
+    print("📦 Installing CLIP at runtime...")
+    subprocess.check_call([
+        sys.executable, "-m", "pip", "install", 
+        "--no-cache-dir", 
+        "git+https://github.com/openai/CLIP.git"
+    ])
+    import clip
+    print("✅ CLIP installed successfully")
+# ======================================
+
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import os
