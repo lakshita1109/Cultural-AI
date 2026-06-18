@@ -5,17 +5,17 @@ const uploadPlaceholder = document.getElementById('upload-placeholder');
 const identifyBtn = document.getElementById('identify-btn');
 
 // Click upload box → open file picker
-uploadBox.addEventListener('click', function() {
+uploadBox.addEventListener('click', function () {
     imageInput.click();
 });
 
 // When user selects a file → show preview
-imageInput.addEventListener('change', function() {
+imageInput.addEventListener('change', function () {
     const file = imageInput.files[0];
     if (!file) return;
 
     const reader = new FileReader();
-    reader.onload = function(e) {
+    reader.onload = function (e) {
         previewImage.src = e.target.result;
         previewImage.hidden = false;
         uploadPlaceholder.hidden = true;
@@ -25,7 +25,7 @@ imageInput.addEventListener('change', function() {
 });
 
 // When user clicks Identify Landmark
-identifyBtn.addEventListener('click', async function() {
+identifyBtn.addEventListener('click', async function () {
 
     const file = imageInput.files[0];
     if (!file) return;
@@ -40,7 +40,7 @@ identifyBtn.addEventListener('click', async function() {
 
     try {
         // Send image to Flask backend
-        const response = await fetch('http://127.0.0.1:5000/predict', {
+        const response = await fetch('https://zunzunn-cltural-ai-backend.hf.space/predict', {
             method: 'POST',
             body: formData
         });
@@ -52,7 +52,7 @@ identifyBtn.addEventListener('click', async function() {
 
         // Also save image preview
         const reader = new FileReader();
-        reader.onload = function(e) {
+        reader.onload = function (e) {
             localStorage.setItem('uploadedImage', e.target.result);
             // Go to result page
             window.location.href = 'result.html';
@@ -61,7 +61,7 @@ identifyBtn.addEventListener('click', async function() {
 
     } catch (error) {
         // If Flask is not running, show error
-        alert('Could not connect to server. Make sure Flask is running on port 5000.');
+        alert('Could not connect to the Cultural AI backend. Please try again later.');
         identifyBtn.textContent = 'Identify Landmark';
         identifyBtn.disabled = false;
     }
