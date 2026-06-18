@@ -11,7 +11,7 @@ import os
 # device = where to run it (cpu since we have no GPU)
 device = "cuda" if torch.cuda.is_available() else "cpu"
 print(f"Loading CLIP on {device}...")
-model, preprocess = clip.load("ViT-B/32", device=device)
+model, preprocess = clip.load("RN50", device=device)
 print("CLIP loaded!")
 
 # ── STEP 2: DEFINE LANDMARKS WITH RICH DESCRIPTIONS ──
