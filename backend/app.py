@@ -4,18 +4,7 @@ import os
 
 # ===== RUNTIME CLIP INSTALLATION =====
 # This runs when your app starts on Vercel
-try:
-    import clip
-    print("✅ CLIP already installed")
-except ImportError:
-    print("📦 Installing CLIP at runtime...")
-    subprocess.check_call([
-        sys.executable, "-m", "pip", "install", 
-        "--no-cache-dir", 
-        "git+https://github.com/openai/CLIP.git"
-    ])
-    import clip
-    print("✅ CLIP installed successfully")
+import clip
 # ======================================
 
 from flask import Flask, request, jsonify, send_from_directory
@@ -214,5 +203,5 @@ def get_quiz(landmark_name):
     })
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5001))
+    port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=False)
