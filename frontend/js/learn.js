@@ -104,7 +104,7 @@ function newQuote() {
     quoteText.style.opacity = '0';
     quoteAuthor.style.opacity = '0';
 
-    setTimeout(function() {
+    setTimeout(function () {
         quoteText.textContent = quotes[currentQuoteIndex].text;
         quoteAuthor.textContent = '— ' + quotes[currentQuoteIndex].author;
 
@@ -127,7 +127,7 @@ function buildTicker() {
 function buildCards() {
     const grid = document.getElementById('cards-grid');
 
-    landmarks.forEach(function(landmark, index) {
+    landmarks.forEach(function (landmark, index) {
         const card = document.createElement('div');
         card.classList.add('landmark-card');
 
@@ -140,14 +140,17 @@ function buildCards() {
         `;
 
         // Click card → go to quiz
-        card.addEventListener('click', function() {
+        card.addEventListener('click', function () {
+            // Store the landmark key so quiz loads correct questions
+            const landmarkKey = landmark.title.toLowerCase().replace(/ /g, '_');
+            localStorage.setItem('predictedLandmark', landmarkKey);
             window.location.href = 'quiz.html';
         });
 
         grid.appendChild(card);
 
         // Staggered entrance animation
-        setTimeout(function() {
+        setTimeout(function () {
             card.classList.add('visible');
         }, index * 100);
     });
@@ -155,15 +158,15 @@ function buildCards() {
 
 // ── SCROLL ANIMATION (cards animate when visible on screen) ──
 function setupScrollAnimation() {
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
+    const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
             }
         });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.landmark-card').forEach(function(card) {
+    document.querySelectorAll('.landmark-card').forEach(function (card) {
         observer.observe(card);
     });
 }
