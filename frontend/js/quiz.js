@@ -7,20 +7,47 @@ let answered = false;
 // ── FETCH QUIZ FROM FLASK ──
 async function fetchQuiz() {
     const landmark = localStorage.getItem('predictedLandmark') || 'taj_mahal';
+    console.log('Fetching quiz for:', landmark);
 
     try {
         const response = await fetch(`/quiz/${landmark}`);
         const data = await response.json();
+        console.log('Quiz data received:', data);
         quizData = data.questions;
+
+        if (!quizData || quizData.length === 0) {
+            console.error('No questions received!');
+            return;
+        }
+
         loadQuestion();
     } catch (error) {
         console.error('Could not fetch quiz:', error);
-        // Fallback to default questions
         quizData = [
             {
-                question: 'Which of these is a UNESCO World Heritage Site?',
+                question: 'Which of these is a UNESCO World Heritage Site in India?',
                 options: ['Taj Mahal', 'Eiffel Tower', 'Statue of Liberty', 'Big Ben'],
                 answer: 'Taj Mahal'
+            },
+            {
+                question: 'Which Indian monument is known as the symbol of love?',
+                options: ['Red Fort', 'Taj Mahal', 'Qutub Minar', 'India Gate'],
+                answer: 'Taj Mahal'
+            },
+            {
+                question: 'In which city is the Charminar located?',
+                options: ['Chennai', 'Bangalore', 'Hyderabad', 'Mumbai'],
+                answer: 'Hyderabad'
+            },
+            {
+                question: 'Which empire built the temples of Hampi?',
+                options: ['Mughal Empire', 'Maratha Empire', 'Vijayanagara Empire', 'Chola Empire'],
+                answer: 'Vijayanagara Empire'
+            },
+            {
+                question: 'What is the architectural style of Belur and Halebidu temples?',
+                options: ['Mughal', 'Dravidian', 'Hoysala', 'Chalukya'],
+                answer: 'Hoysala'
             }
         ];
         loadQuestion();
@@ -29,6 +56,8 @@ async function fetchQuiz() {
 
 // ── LOAD A QUESTION ──
 function loadQuestion() {
+    if (!quizData || quizData.length === 0) return;
+
     const data = quizData[currentQuestion];
 
     document.getElementById('question-text').textContent = data.question;
@@ -42,11 +71,11 @@ function loadQuestion() {
     const grid = document.getElementById('options-grid');
     grid.innerHTML = '';
 
-    data.options.forEach(function(option) {
+    data.options.forEach(function (option) {
         const btn = document.createElement('button');
         btn.classList.add('option-btn');
         btn.textContent = option;
-        btn.onclick = function() { checkAnswer(option, btn); };
+        btn.onclick = function () { checkAnswer(option, btn); };
         grid.appendChild(btn);
     });
 
@@ -61,7 +90,7 @@ function checkAnswer(selected, clickedBtn) {
 
     const correct = quizData[currentQuestion].answer;
 
-    document.querySelectorAll('.option-btn').forEach(function(btn) {
+    document.querySelectorAll('.option-btn').forEach(function (btn) {
         btn.disabled = true;
         if (btn.textContent === correct) {
             btn.classList.add('correct');
